@@ -1,2 +1,4 @@
-# univesp-p1
-Repositório para código da aplicação do Projeto Integrador 1 da UNIVESP.
+## Projeto Integrador 1 - UNIVESP
+#Site e-commerce para uma loja de auto peças.
+
+Projeto será desenvolvido com Python, utilizando o framework Django.
