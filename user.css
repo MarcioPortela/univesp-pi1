@@ -9,3 +9,13 @@ body {
         margin: auto;
         width: 30%;
 }
+
+footer {
+        background-color: #ffffff;
+        text-align: left;
+        position: relative;
+        top: 500px;
+        right: 100px;
+        width: 280px;
+        height: 20px;
+      }
