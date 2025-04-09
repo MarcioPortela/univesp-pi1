@@ -1,0 +1,11 @@
+body {
+        display: block;
+        margin: auto;
+        width: 80%;
+      }
+
+.section {
+        display: block;
+        margin: auto;
+        width: 30%;
+}
