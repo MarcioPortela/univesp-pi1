@@ -1,0 +1,68 @@
+[
+  {
+    "model": "app_produto.produto",
+    "pk": 1,
+    "fields": {
+      "nome": "Roda Esportiva",
+      "imagem": "images/item1.png",
+      "preco": 599.90,
+      "descricao": "Roda esportiva de liga leve para melhor desempenho e estética.",
+      "detalhes": "Compatível com diversos modelos esportivos. Diâmetro: 17 polegadas."
+    }
+  },
+  {
+    "model": "app_produto.produto",
+    "pk": 2,
+    "fields": {
+      "nome": "Amortecedor Duplo",
+      "imagem": "images/item2.png",
+      "preco": 349.90,
+      "descricao": "Amortecedores resistentes que oferecem maior estabilidade.",
+      "detalhes": "Par dianteiro universal. Alta durabilidade em terrenos irregulares."
+    }
+  },
+  {
+    "model": "app_produto.produto",
+    "pk": 3,
+    "fields": {
+      "nome": "Engrenagem de Motor",
+      "imagem": "images/item6.png",
+      "preco": 189.90,
+      "descricao": "Engrenagem metálica reforçada para motores de alto torque.",
+      "detalhes": "Feita em aço carbono. Encaixe padrão industrial."
+    }
+  },
+  {
+    "model": "app_produto.produto",
+    "pk": 4,
+    "fields": {
+      "nome": "Bateria Automotiva",
+      "imagem": "images/item7.png",
+      "preco": 489.00,
+      "descricao": "Bateria de alta performance para veículos leves e utilitários.",
+      "detalhes": "60Ah. Garantia de 18 meses. Livre de manutenção."
+    }
+  },
+  {
+    "model": "app_produto.produto",
+    "pk": 5,
+    "fields": {
+      "nome": "Pneu Off-road",
+      "imagem": "images/item8.png",
+      "preco": 729.90,
+      "descricao": "Pneu robusto para trilhas e terrenos acidentados.",
+      "detalhes": "Medida 285/75 R16. Reforçado contra cortes e perfurações."
+    }
+  },
+  {
+    "model": "app_produto.produto",
+    "pk": 6,
+    "fields": {
+      "nome": "Óleo Lubrificante",
+      "imagem": "images/item9.png",
+      "preco": 59.90,
+      "descricao": "Lubrificante sintético para motor de alto desempenho.",
+      "detalhes": "5W30. Protege o motor contra o desgaste e oxidação."
+    }
+  }
+]

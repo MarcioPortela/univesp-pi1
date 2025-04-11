@@ -1,0 +1,15 @@
+<!-- filepath: c:\Users\Principal\Downloads\telaproduto\app_produto\templates\lista_produtos.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Produtos</title>
+</head>
+<body>
+    <h1>Lista de Produtos</h1>
+    <ul>
+        {% for produto in produtos %}
+            <li>{{ produto.nome }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
