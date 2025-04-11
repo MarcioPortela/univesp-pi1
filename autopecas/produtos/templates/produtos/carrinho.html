@@ -1,0 +1,267 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --amarelo-primario: #FFC92B;
+        --vermelho-secundario: #C72D2B;
+        --branco-claro: #FFFFFF;
+        --preto-escuro: #000000;
+        --destaque: #FFD62C;
+    }
+    
+    body {
+        background-color: var(--bege-claro);
+    }
+    
+    .card {
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-primary {
+        background-color: var(--amarelo-primario);
+        border-color: var(--amarelo-primario);
+    }
+    
+    .btn-primary:hover {
+        background-color: var(--vermelho-secundario);
+        border-color: var(--vermelho-secundario);
+    }
+    
+    .table th {
+        background-color: var(--amarelo-primario);
+        color: white;
+    }
+    
+    .resumo-card {
+        background-color: var(--branco-claro);
+        border-left: 4px solid var(--amarelo-primario);
+    }
+    
+    .quantidade-input {
+        border-color: var(--vermelho-secundario);
+    }
+    
+    .empty-cart-icon {
+        color: var(--amarelo-primario);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4 mb-5">
+    <h2 class="mb-4 text-center" style="color: var(--destaque);">
+        <i class="bi bi-cart3 me-2"></i>Seu Carrinho de Compras
+    </h2>
+    
+    <div class="row">
+        <!-- #2C5E2A;    #EDBA2B  F5F5DC-->
+        <!-- Lista de Itens -->
+        <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="card-body p-4">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="border-radius: 10px 0 0 0;">Produto</th>
+                                <th scope="col">Preço</th>
+                                <th scope="col">Quantidade</th>
+                                <th scope="col">Subtotal</th>
+                                <th scope="col" style="border-radius: 0 10px 0 0;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Produto 1 -->
+                            <tr class="align-middle">
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="{% static 'produtos/images/item1.jpg' %}" alt="Bateria" 
+                                             class="img-fluid rounded me-3" style="width: 70px; height: 70px; object-fit: cover;">
+                                        <div>
+                                            <h6 class="mb-1" style="color: var(--amarelo-primario);">Bateria</h6>
+                                            <small class="text-muted">Código: CAF250G</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="fw-bold">R$ 24,90</td>
+                                <td>
+                                    <div class="input-group" style="max-width: 130px;">
+                                        <button class="btn btn-outline-secondary decremento" type="button" style="border-color: var(--vermelho-secundario);">
+                                            <i class="bi bi-dash"></i>
+                                        </button>
+                                        <input type="text" class="form-control text-center quantidade quantidade-input" value="2">
+                                        <button class="btn btn-outline-secondary incremento" type="button" style="border-color: var(--vermelho-secundario);">
+                                            <i class="bi bi-plus"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="fw-bold">R$ 49,80</td>
+                                <td class="text-center">
+                                    <button class="btn btn-sm btn-outline-danger remover-item">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <!-- Produto 2 -->
+                            <tr class="align-middle">
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="{% static 'produtos/images/item2.jpg' %}" alt="Amortecedor" 
+                                             class="img-fluid rounded me-3" style="width: 70px; height: 70px; object-fit: cover;">
+                                        <div>
+                                            <h6 class="mb-1" style="color: var(--amarelo-primario);">Amortecedor</h6>
+                                            <small class="text-muted">Código: CHA100G</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="fw-bold">R$ 18,50</td>
+                                <td>
+                                    <div class="input-group" style="max-width: 130px;">
+                                        <button class="btn btn-outline-secondary decremento" type="button" style="border-color: var(--vermelho-secundario);">
+                                            <i class="bi bi-dash"></i>
+                                        </button>
+                                        <input type="text" class="form-control text-center quantidade quantidade-input" value="1">
+                                        <button class="btn btn-outline-secondary incremento" type="button" style="border-color: var(--vermelho-secundario);">
+                                            <i class="bi bi-plus"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="fw-bold">R$ 18,50</td>
+                                <td class="text-center">
+                                    <button class="btn btn-sm btn-outline-danger remover-item">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <!-- Produto 3 -->
+                            <tr class="align-middle">
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="{% static 'produtos/images/item3.jpg' %}" alt="Chave de roda" 
+                                             class="img-fluid rounded me-3" style="width: 70px; height: 70px; object-fit: cover;">
+                                        <div>
+                                            <h6 class="mb-1" style="color: var(--amarelo-primario);">Chave de roda</h6>
+                                            <small class="text-muted">Código: CAN300ML</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="fw-bold">R$ 35,00</td>
+                                <td>
+                                    <div class="input-group" style="max-width: 130px;">
+                                        <button class="btn btn-outline-secondary decremento" type="button" style="border-color: var(--vermelho-secundario);">
+                                            <i class="bi bi-dash"></i>
+                                        </button>
+                                        <input type="text" class="form-control text-center quantidade quantidade-input" value="1">
+                                        <button class="btn btn-outline-secondary incremento" type="button" style="border-color: var(--vermelho-secundario);">
+                                            <i class="bi bi-plus"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="fw-bold">R$ 35,00</td>
+                                <td class="text-center">
+                                    <button class="btn btn-sm btn-outline-danger remover-item">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <!-- Produto 4 -->
+                            <tr class="align-middle">
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="{% static 'produtos/images/item4.jpg' %}" alt="Pneu" 
+                                             class="img-fluid rounded me-3" style="width: 70px; height: 70px; object-fit: cover;">
+                                        <div>
+                                            <h6 class="mb-1" style="color: var(--amarelo-primario);">Pneu</h6>
+                                            <small class="text-muted">Código: ACM500G</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="fw-bold">R$ 12,90</td>
+                                <td>
+                                    <div class="input-group" style="max-width: 130px;">
+                                        <button class="btn btn-outline-secondary decremento" type="button" style="border-color: var(--vermelho-secundario);">
+                                            <i class="bi bi-dash"></i>
+                                        </button>
+                                        <input type="text" class="form-control text-center quantidade quantidade-input" value="3">
+                                        <button class="btn btn-outline-secondary incremento" type="button" style="border-color: var(--vermelho-secundario);">
+                                            <i class="bi bi-plus"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="fw-bold">R$ 38,70</td>
+                                <td class="text-center">
+                                    <button class="btn btn-sm btn-outline-danger remover-item">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="d-flex justify-content-between mb-4">
+                <a href="#" class="btn btn-outline-primary">
+                    <i class="bi bi-arrow-left-circle me-2"></i>Continuar Comprando
+                </a>
+                <button class="btn btn-outline-danger limpar-carrinho">
+                    <i class="bi bi-trash me-2"></i>Limpar Carrinho
+                </button>
+            </div>
+        </div>
+        
+        <!-- Resumo do Pedido -->
+        <div class="col-lg-4">
+            <div class="card resumo-card">
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-4" style="color: var(--amarelo-primario);">
+                        <i class="bi bi-receipt me-2"></i>Resumo do Pedido
+                    </h5>
+                    
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="text-muted">Subtotal:</span>
+                        <span class="fw-bold">R$ 142,00</span>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="text-muted">Frete:</span>
+                        <span class="fw-bold">R$ 15,00</span>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between mb-3">
+                        <span class="text-muted">Desconto:</span>
+                        <span class="fw-bold text-danger">- R$ 10,00</span>
+                    </div>
+                    
+                    <hr style="border-top: 2px dashed var(--vermelho-secundario);">
+                    
+                    <div class="d-flex justify-content-between mb-4">
+                        <span class="fw-bold fs-5" style="color: var(--amarelo-primario);">Total:</span>
+                        <span class="fw-bold fs-5" style="color: var(--amarelo-primario);">R$ 147,00</span>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="cupom" class="form-label text-muted mb-2">Cupom de desconto</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control cupom" id="cupom" placeholder="Digite o código">
+                            <button class="btn btn-outline-secondary aplicar-cupom" type="button" style="border-color: var(--vermelho-secundario);">
+                                Aplicar
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="btn btn-primary w-100 py-2">
+                        <i class="bi bi-credit-card me-2"></i>Finalizar Compra
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
