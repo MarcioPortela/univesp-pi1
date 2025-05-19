@@ -1,0 +1,17 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.card {
+    border-radius: 15px;
+}
+
+.account-menu-item.text-danger:hover {
+    color: #dc3545 !important;
+    background-color: rgba(220, 53, 69, 0.1);
+}
+
+.account-menu-item.text-danger.account-active {
+    color: #fff !important;
+    background-color: #dc3545;
+}

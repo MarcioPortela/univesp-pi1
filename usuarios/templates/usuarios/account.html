@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}Minha Conta - Auto Peças{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">Visão Geral da Conta</h1>
+
+    <!-- Informações Básicas -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Informações da Conta</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Nome:</strong> {{ user.get_full_name|default:user.username }}</p>
+                    <p><strong>Email:</strong> {{ user.email }}</p>
+                    <p><strong>Telefone:</strong> {{ user.profile.phone|default:"Não informado" }}</p>
+                    <p><strong>Endereço:</strong> {{ user.profile.address|default:"Não informado" }}</p>
+                    <p><strong>CEP:</strong> {{ user.profile.zip_code|default:"Não informado" }}</p>
+                    <div class="mt-3">
+                        <a href="{% url 'edit_profile' %}" class="btn btn-primary">
+                            <i class="bi bi-pencil"></i> Editar Perfil
+                        </a>
+                        <a href="{% url 'change_password' %}" class="btn btn-outline-secondary">
+                            <i class="bi bi-lock"></i> Alterar Senha
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resumo de Pedidos -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Últimos Pedidos</h5>
+                </div>
+                <div class="card-body">
+                    {% if orders %}
+                        <div class="list-group">
+                            {% for order in orders|slice:":3" %}
+                                <a href="{% url 'orders' %}" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1">Pedido #{{ order.id }}</h6>
+                                        <small>{{ order.created_at|date:"d/m/Y" }}</small>
+                                    </div>
+                                    <p class="mb-1">Status: {{ order.get_status_display }}</p>
+                                </a>
+                            {% endfor %}
+                        </div>
+                        <div class="mt-3">
+                            <a href="{% url 'orders' %}" class="btn btn-outline-primary">Ver Todos os Pedidos</a>
+                        </div>
+                    {% else %}
+                        <p>Você ainda não tem pedidos.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Zona de Perigo -->
+    <div class="card border-danger mt-4">
+        <div class="card-header bg-danger text-white">
+            <h5 class="mb-0">Zona de Perigo</h5>
+        </div>
+        <div class="card-body">
+            <h6 class="card-title">Excluir Conta</h6>
+            <p class="card-text">Ao excluir sua conta, todos os seus dados serão permanentemente removidos. Esta ação não pode ser desfeita.</p>
+            <a href="{% url 'delete_account' %}" class="btn btn-danger">
+                <i class="bi bi-trash"></i> Excluir Minha Conta
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+/* Form styling */
+.form-control {
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    padding: 0.375rem 0.75rem;
+}
+
+.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.errorlist {
+    color: #dc3545;
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.alert {
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+}
