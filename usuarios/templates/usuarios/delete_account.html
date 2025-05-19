@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Excluir Conta - Auto Peças{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">Excluir Conta</h4>
+                </div>
+                <div class="card-body">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <div class="alert alert-warning">
+                        <h5>Atenção!</h5>
+                        <p>Você está prestes a excluir sua conta permanentemente. Esta ação não pode ser desfeita.</p>
+                        <ul>
+                            <li>Todos os seus dados pessoais serão excluídos</li>
+                            <li>Seu histórico de pedidos será removido</li>
+                            <li>Sua lista de favoritos será apagada</li>
+                            <li>Você perderá acesso à sua conta</li>
+                        </ul>
+                    </div>
+
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+                        <div class="mb-4">
+                            <label for="password" class="form-label">Para confirmar, digite sua senha atual:</label>
+                            <input type="password" 
+                                   name="password" 
+                                   id="password" 
+                                   class="form-control" 
+                                   required 
+                                   placeholder="Digite sua senha"
+                                   autocomplete="current-password">
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-danger">
+                                <i class="bi bi-exclamation-triangle me-2"></i>
+                                Sim, quero excluir minha conta
+                            </button>
+                            <a href="{% url 'account' %}" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left me-2"></i>
+                                Não, quero manter minha conta
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

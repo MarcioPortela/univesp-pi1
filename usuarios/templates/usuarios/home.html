@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Auto Peças{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <h1>Bem-vindo à Auto Peças</h1>
+            <p>Encontre as melhores peças para seu veículo.</p>
+        </div>
+    </div>
+    
+    {% if user.is_authenticated %}
+        <div class="row mt-4">
+            <div class="col-12">
+                <h2>Menu Rápido</h2>
+                <div class="list-group">
+                    <a href="{% url 'account' %}" class="list-group-item list-group-item-action">Minha Conta</a>
+                    <a href="{% url 'orders' %}" class="list-group-item list-group-item-action">Meus Pedidos</a>
+                    <a href="{% url 'favorites' %}" class="list-group-item list-group-item-action">Favoritos</a>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="row mt-4">
+            <div class="col-12">
+                <p>
+                    <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+                    <a href="{% url 'register' %}" class="btn btn-secondary">Registrar</a>
+                </p>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
