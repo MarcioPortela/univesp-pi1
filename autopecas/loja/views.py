@@ -6,7 +6,10 @@ from .forms import ProdutoForm, CategoriaForm
 
 # Páginas públicas
 def lista_produtos(request):
-    produtos = Produto.objects.filter(ativo=True)
+    produtos = Produto.objects.all()  # Ou sua lógica específica
+    #return render(request, 'loja/lista_produtos.html', {'produtos': produtos})
+    
+    #produtos = Produto.objects.filter(ativo=True)
     categorias = Categoria.objects.all()
     
     categoria_id = request.GET.get('categoria')
@@ -29,7 +32,7 @@ def detalhe_produto(request, pk):
     return render(request, 'loja/detalhe_produto.html', context)
 
 # Carrinho
-@login_required
+#@login_required
 def carrinho(request):
     carrinho, created = Carrinho.objects.get_or_create(
         usuario=request.user, 
@@ -37,7 +40,7 @@ def carrinho(request):
     )
     return render(request, 'loja/carrinho.html', {'carrinho': carrinho})
 
-@login_required
+#@login_required
 def adicionar_ao_carrinho(request, produto_id):
     produto = get_object_or_404(Produto, pk=produto_id, ativo=True)
     carrinho, created = Carrinho.objects.get_or_create(
@@ -63,7 +66,7 @@ def adicionar_ao_carrinho(request, produto_id):
     
     return redirect('carrinho')
 
-@login_required
+#@login_required
 def remover_do_carrinho(request, item_id):
     item = get_object_or_404(ItemCarrinho, pk=item_id, carrinho__usuario=request.user)
     produto_nome = item.produto.nome
@@ -71,7 +74,7 @@ def remover_do_carrinho(request, item_id):
     messages.success(request, f"{produto_nome} removido do carrinho!")
     return redirect('carrinho')
 
-@login_required
+#@login_required
 def atualizar_carrinho(request, item_id):
     if request.method == 'POST':
         item = get_object_or_404(ItemCarrinho, pk=item_id, carrinho__usuario=request.user)

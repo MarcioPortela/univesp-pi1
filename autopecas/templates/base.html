@@ -6,6 +6,7 @@
     <title>AutoPeças - {% block title %}{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    {% block extra_css %}{% endblock %}
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -19,6 +20,17 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'lista_produtos' %}">Produtos</a>
                     </li>
+                    {% if user.is_staff %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            Administração
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'lista_produtos_admin' %}">Gerenciar Produtos</a></li>
+                            <li><a class="dropdown-item" href="{% url 'lista_categorias' %}">Gerenciar Categorias</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -26,8 +38,8 @@
                             <i class="bi bi-cart"></i>
                             Carrinho
                             {% if user.is_authenticated %}
-                                {% with carrinho=user.carrinho_set.all|first %}
-                                    {% if carrinho and not carrinho.finalizado %}
+                                {% with carrinho=user.carrinho_set.filter(finalizado=False).first %}
+                                    {% if carrinho %}
                                         <span class="badge bg-primary">{{ carrinho.itens.count }}</span>
                                     {% endif %}
                                 {% endwith %}
@@ -52,6 +64,15 @@
     </nav>
 
     <div class="container mt-4">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+        
         {% block content %}{% endblock %}
     </div>
 
@@ -62,5 +83,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    {% block extra_js %}{% endblock %}
 </body>
 </html>
